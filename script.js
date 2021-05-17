@@ -82,7 +82,9 @@ function generatePassword() {
     console.log("No.")
   }
 // Continue to add random characters from `char-array` to `password` UNTIL `password.length` is equal to the user provided `passwordLength`.
-
+  while (password.length < passwordLength) {
+    password = password + randomChoice(passwordCharArray)
+  }
 // RETURN `password`
   return password
 }
