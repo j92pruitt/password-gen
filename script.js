@@ -14,24 +14,28 @@ function writePassword() {
 function generatePassword(){
 // Create arrays containing all possible symbols, letters, and numbers for use in password.
 
-var lowercaseArray = [
-  "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" 
-];
+  var lowercaseArray = [
+    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" 
+  ];
 
-var uppercaseArray = [
-  "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
-];
+  var uppercaseArray = [
+    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
+  ];
 
-var numberArray = [
-  "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"
-]
+  var numberArray = [
+    "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"
+  ]
 
-var specialCharArray = [
-  " ", "!", "\"", "#", "$", "%", "&", "\'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~"
-]
+  var specialCharArray = [
+    " ", "!", "\"", "#", "$", "%", "&", "\'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~"
+  ]
 
 // PROMPT user for `passwordLength`.
   // Validate that provided value is a number between 8 and 128. If not then repromt.
+
+  passwordLength = prompt("Please enter desired password length. (Between 8 and 128)")
+
+  console.log(passwordLength); //check to see if passwordength is being stored correctly.
 
 // CONFIRM if user wants to have lowercase letters. If so add them to `char-array` and add 1 random lowercase letter to `password`
 
