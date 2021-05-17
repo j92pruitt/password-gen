@@ -11,7 +11,7 @@ function writePassword() {
 }
 
 // `generatePassword` function is called by `writePassword`. Returns `password` a random string based on user input criteria.
-function generatePassword(){
+function generatePassword() {
 // Create arrays containing all possible symbols, letters, and numbers for use in password.
 
   var lowercaseArray = [
@@ -33,9 +33,18 @@ function generatePassword(){
 // PROMPT user for `passwordLength`.
   // Validate that provided value is a number between 8 and 128. If not then repromt.
 
-  passwordLength = prompt("Please enter desired password length. (Between 8 and 128)")
+  // Boolean for logging whether a given password length is valid. Starts false.
+  var validationBool = false;
 
-  console.log(passwordLength); //check to see if passwordength is being stored correctly.
+  // Will loop unitl `validationBool` is true.
+  while (!validationBool){
+    // Prompt user for password and store response. Response will be either an int or NaN.
+    passwordLength = lengthPrompt();
+    // Check to see if password length is valid. Valid means it is an int and between 8 and 128 inclusive. If password is valid set `validationBool` to true.
+    if (passwordLength !== NaN && passwordLength > 7 && passwordLength < 129) {
+      validationBool = true
+    }
+  }
 
 // CONFIRM if user wants to have lowercase letters. If so add them to `char-array` and add 1 random lowercase letter to `password`
 
@@ -49,6 +58,11 @@ function generatePassword(){
 
 // RETURN `password`
   return "Password"
+}
+
+function lengthPrompt() {
+  userData = prompt("Please enter desired password length. (Between 8 and 128)")
+  return parseInt(userData, 10)
 }
 
 // Add event listener to generate button
