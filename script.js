@@ -50,36 +50,24 @@ function generatePassword() {
   }
 
 // CONFIRM if user wants to have lowercase letters. If so add them to `char-array` and add 1 random lowercase letter to `password`
-  if (confirm("Include lowercase letters?. (OK = Yes    Cancel = No)")) {
+  if (confirm("Include lowercase letters? (OK = Yes    Cancel = No)")) {
     password = password + randomChoice(lowercaseArray);
     passwordCharArray = passwordCharArray.concat(lowercaseArray);
-    console.log(passwordCharArray);
-  } else{
-    console.log("No.")
   }
 // CONFIRM if user wants to have uppercase letters. If so add them to `char-array` and add 1 random uppercase letter to `password`
-  if (confirm("Include uppercase letters?. (OK = Yes    Cancel = No)")) {
+  if (confirm("Include uppercase letters? (OK = Yes    Cancel = No)")) {
     password = password + randomChoice(uppercaseArray);
     passwordCharArray = passwordCharArray.concat(uppercaseArray);
-    console.log(passwordCharArray);
-  } else{
-    console.log("No.")
   }
 // CONFIRM if user wants to have numbers. If so add them to `char-array` and add 1 random number to `password`
-  if (confirm("Include numbers?. (OK = Yes    Cancel = No)")) {
+  if (confirm("Include numbers? (OK = Yes    Cancel = No)")) {
     password = password + randomChoice(numberArray);
     passwordCharArray = passwordCharArray.concat(numberArray);
-    console.log(passwordCharArray);
-  } else{
-    console.log("No.")
   }
 // CONFIRM if user wants to have special characters. If so add them to `char-array` and add 1 random special character to `password`
-  if (confirm("Include special characters?. (OK = Yes    Cancel = No)")) {
+  if (confirm("Include special characters? (OK = Yes    Cancel = No)")) {
     password = password + randomChoice(specialCharArray);
     passwordCharArray = passwordCharArray.concat(specialCharArray);
-    console.log(passwordCharArray);
-  } else{
-    console.log("No.")
   }
 // Continue to add random characters from `char-array` to `password` UNTIL `password.length` is equal to the user provided `passwordLength`.
   while (password.length < passwordLength) {
