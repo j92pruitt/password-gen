@@ -1,6 +1,9 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+var passwordCharArray;
+var password;
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
@@ -13,9 +16,9 @@ function writePassword() {
 // `generatePassword` function is called by `writePassword`. Returns `password` a random string based on user input criteria.
 function generatePassword() {
 // Create arrays containing all possible symbols, letters, and numbers for use in password.
-  var passwordCharArray = [];
+  passwordCharArray = [];
 
-  var password = "";
+  password = "";
 
   var lowercaseArray = [
     "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" 
@@ -34,7 +37,7 @@ function generatePassword() {
   ];
 
 // PROMPT user for `passwordLength`.
-  // Validate that provided value is a number between 8 and 128. If not then repromt.
+  // Validate that provided value is a number between 8 and 128. If not then reprompt.
 
   // Boolean for logging whether a given password length is valid. Starts false.
   var validationBool = false;
@@ -49,26 +52,12 @@ function generatePassword() {
     }
   }
 
-// CONFIRM if user wants to have lowercase letters. If so add them to `char-array` and add 1 random lowercase letter to `password`
-  if (confirm("Include lowercase letters? (OK = Yes    Cancel = No)")) {
-    password = password + randomChoice(lowercaseArray);
-    passwordCharArray = passwordCharArray.concat(lowercaseArray);
-  }
-// CONFIRM if user wants to have uppercase letters. If so add them to `char-array` and add 1 random uppercase letter to `password`
-  if (confirm("Include uppercase letters? (OK = Yes    Cancel = No)")) {
-    password = password + randomChoice(uppercaseArray);
-    passwordCharArray = passwordCharArray.concat(uppercaseArray);
-  }
-// CONFIRM if user wants to have numbers. If so add them to `char-array` and add 1 random number to `password`
-  if (confirm("Include numbers? (OK = Yes    Cancel = No)")) {
-    password = password + randomChoice(numberArray);
-    passwordCharArray = passwordCharArray.concat(numberArray);
-  }
-// CONFIRM if user wants to have special characters. If so add them to `char-array` and add 1 random special character to `password`
-  if (confirm("Include special characters? (OK = Yes    Cancel = No)")) {
-    password = password + randomChoice(specialCharArray);
-    passwordCharArray = passwordCharArray.concat(specialCharArray);
-  }
+// Check which charcters the user wants to include in the password and add those characters to the pool.
+  confirmAndAdd("lowercase letters", lowercaseArray);
+  confirmAndAdd("uppercase letters", uppercaseArray);
+  confirmAndAdd("numbers", numberArray);
+  confirmAndAdd("special characters", specialCharArray);
+
 // Continue to add random characters from `char-array` to `password` UNTIL `password.length` is equal to the user provided `passwordLength`.
   while (password.length < passwordLength) {
     password = password + randomChoice(passwordCharArray)
@@ -77,13 +66,23 @@ function generatePassword() {
   return password
 }
 
+// Prompts a user for a password length and returns an integer or NaN if the input is not an integer.
 function lengthPrompt() {
   userData = prompt("Please enter desired password length. (Between 8 and 128)")
   return parseInt(userData, 10)
 }
 
+// Returns a random element from the given array.
 function randomChoice(stringArrray) {
   return stringArrray[Math.floor(Math.random() * stringArrray.length)];
+}
+
+// Confirms with user if they would like to include characters, if yes adds the given array to `passwordCharArray` and adds a random character to the password to guarantee at least 1 of each of the desired character types appears.
+function confirmAndAdd(arrayName, stringArrray){
+  if (confirm("Include " + arrayName + "? (OK = Yes    Cancel = No)")) {
+    password = password + randomChoice(stringArrray);
+    passwordCharArray = passwordCharArray.concat(stringArrray);
+  }
 }
 
 // Add event listener to generate button
