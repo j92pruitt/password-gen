@@ -46,9 +46,13 @@ function generatePassword() {
   while (!validationBool){
     // Prompt user for password and store response. Response will be either an int or NaN.
     passwordLength = lengthPrompt();
+    // Checks to see if cancel button was pressed or no password length entered. If so then exits fuction with empty string.
+    if (passwordLength === null){
+      return "";
+    }
     // Check to see if password length is valid. Valid means it is an int and between 8 and 128 inclusive. If password is valid set `validationBool` to true.
     if (passwordLength !== NaN && passwordLength > 7 && passwordLength < 129) {
-      validationBool = true
+      validationBool = true;
     }
   }
 
@@ -60,16 +64,20 @@ function generatePassword() {
 
 // Continue to add random characters from `char-array` to `password` UNTIL `password.length` is equal to the user provided `passwordLength`.
   while (password.length < passwordLength) {
-    password = password + randomChoice(passwordCharArray)
+    password = password + randomChoice(passwordCharArray);
   }
 // RETURN `password`
-  return password
+  return password;
 }
 
 // Prompts a user for a password length and returns an integer or NaN if the input is not an integer.
 function lengthPrompt() {
   userData = prompt("Please enter desired password length. (Between 8 and 128)")
-  return parseInt(userData, 10)
+  if (userData === null || userData === "") {
+    return null;
+  } else {
+  return parseInt(userData, 10);
+  }
 }
 
 // Returns a random element from the given array.
